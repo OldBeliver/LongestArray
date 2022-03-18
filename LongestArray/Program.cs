@@ -10,67 +10,74 @@ namespace LongestArray
     {
         static void Main(string[] args)
         {
-            Random rand = new Random();
+            Random random = new Random();
             int arrayLength = 30;
             int[] array = new int[arrayLength];
 
             int minValue = 1;
             int maxValue = 5;
 
-            int quantity = 0;
-            int maxQuantity = quantity;
-            string line = "";
-
             Console.WriteLine($"Имеется одномерный массив длинной {arrayLength}, заполненный числами от {minValue} до {maxValue}");
 
             for (int i = 0; i < arrayLength; i++)
             {
-                array[i] = rand.Next(minValue, maxValue + 1);
+                array[i] = random.Next(minValue, maxValue + 1);
                 Console.Write($"{array[i]} ");
             }
+
             Console.WriteLine();
 
-            Array.Sort(array);
-            Console.WriteLine($"массив отсортирован:");
-            foreach (int i in array)
+            int quantity = 1;
+            int maxQuantity = 0;
+
+            for (int i = 0; i < array.Length - 1; i++)
             {
-                Console.Write(i + " ");
-            }
-            Console.WriteLine($"\n\nсводная таблица повторений чисел:");
-            
-            for (int i = 0; i < array.Length; i++)
-            {
-                int index;
-                for (index = i; index < array.Length; index++)
+                for (int j = i + 1; j < array.Length; j++)
                 {
-                    if (array[i] == array[index])
+                    if (array[i] == array[j])
                     {
                         quantity++;
                     }
 
-                    if (array[i] != array[index] || index == array.Length - 1)
+                    if (quantity > maxQuantity)
                     {
-                        Console.WriteLine($"значение {array[i]} - {quantity} раз");
+                        maxQuantity = quantity;
+                    }
 
-                        string newLine = $"число {array[i]} повторяется {quantity} раз";
-
-                        if (quantity == maxQuantity)
-                        {
-                            line += ",\n" + newLine;
-                        }
-
-                        if (quantity > maxQuantity)
-                        {
-                            maxQuantity = quantity;
-                            line = newLine;
-                        }
-
+                    if (array[i] != array[j])
+                    {
                         quantity = 1;
-                        i = index;
+                        i = j;
                     }
                 }
             }
-            Console.WriteLine($"\nмаксимальное количество повторений:\n{line}");
+
+            Console.WriteLine($"максимальное число повторяемых чисел: {maxQuantity}");
+
+            quantity = 1;
+            string line = "";
+
+            for (int i = 0; i < array.Length - maxQuantity+1; i++)
+            {
+                for (int j = i + 1; j < i + maxQuantity; j++)
+                {
+                    if (array[i] != array[j])
+                    {                        
+                        quantity = 1;
+                    }
+
+                    if (array[i] == array[j])
+                    {                        
+                        quantity++;
+                    }
+
+                    if(quantity == maxQuantity)
+                    {
+                        line += $"{maxQuantity} раза повторяется число {array[i]}\n";                        
+                    }
+                }
+            }
+            Console.WriteLine(line);
         }
     }
 }
