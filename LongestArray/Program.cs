@@ -29,54 +29,33 @@ namespace LongestArray
 
             int quantity = 1;
             int maxQuantity = 0;
+            string line = "";
 
             for (int i = 0; i < array.Length - 1; i++)
             {
-                for (int j = i + 1; j < array.Length; j++)
+                if (array[i] == array[i + 1])
                 {
-                    if (array[i] == array[j])
-                    {
-                        quantity++;
-                    }
+                    quantity++;
+                }
 
-                    if (quantity > maxQuantity)
-                    {
-                        maxQuantity = quantity;
-                    }
+                if(quantity == maxQuantity)
+                {
+                    line += $"число {array[i]} повторяется {quantity} раз\n";
+                }
 
-                    if (array[i] != array[j])
-                    {
-                        quantity = 1;
-                        i = j;
-                    }
+                if (quantity > maxQuantity)
+                {
+                    maxQuantity = quantity;
+                    line = $"{array[i]} - повторяется {maxQuantity} разa\n";
+                }
+
+                if (array[i] != array[i + 1])
+                {
+                    i++;
+                    quantity = 1;
                 }
             }
-
-            Console.WriteLine($"максимальное число повторяемых чисел: {maxQuantity}");
-
-            quantity = 1;
-            string line = "";
-
-            for (int i = 0; i < array.Length - maxQuantity+1; i++)
-            {
-                for (int j = i + 1; j < i + maxQuantity; j++)
-                {
-                    if (array[i] != array[j])
-                    {                        
-                        quantity = 1;
-                    }
-
-                    if (array[i] == array[j])
-                    {                        
-                        quantity++;
-                    }
-
-                    if(quantity == maxQuantity)
-                    {
-                        line += $"{maxQuantity} раза повторяется число {array[i]}\n";                        
-                    }
-                }
-            }
+            
             Console.WriteLine(line);
         }
     }
