@@ -37,6 +37,10 @@ namespace LongestArray
                 {
                     quantity++;
                 }
+                else
+                {
+                    quantity = 1;
+                }
 
                 if(quantity == maxQuantity)
                 {
@@ -46,13 +50,7 @@ namespace LongestArray
                 if (quantity > maxQuantity)
                 {
                     maxQuantity = quantity;
-                    line = $"{array[i]} - повторяется {maxQuantity} разa\n";
-                }
-
-                if (array[i] != array[i + 1])
-                {
-                    //i++;
-                    quantity = 1;
+                    line = $"число {array[i]} - повторяется {maxQuantity} разa\n";
                 }
             }
             
