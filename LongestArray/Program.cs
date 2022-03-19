@@ -29,7 +29,7 @@ namespace LongestArray
 
             int quantity = 1;
             int maxQuantity = 0;
-            string line = "";
+            string mesage = "";
 
             for (int i = 0; i < array.Length - 1; i++)
             {
@@ -44,17 +44,17 @@ namespace LongestArray
 
                 if(quantity == maxQuantity)
                 {
-                    line += $"число {array[i]} повторяется {quantity} раз\n";
+                    mesage += $"число {array[i]} повторяется {quantity} раз\n";
                 }
 
                 if (quantity > maxQuantity)
                 {
                     maxQuantity = quantity;
-                    line = $"число {array[i]} - повторяется {maxQuantity} разa\n";
+                    mesage = $"число {array[i]} - повторяется {maxQuantity} разa\n";
                 }
             }
             
-            Console.WriteLine(line);
+            Console.WriteLine(mesage);
         }
     }
 }
