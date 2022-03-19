@@ -51,7 +51,7 @@ namespace LongestArray
 
                 if (array[i] != array[i + 1])
                 {
-                    i++;
+                    //i++;
                     quantity = 1;
                 }
             }
