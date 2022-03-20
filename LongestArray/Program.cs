@@ -42,19 +42,45 @@ namespace LongestArray
                     quantity = 1;
                 }
 
-                if(quantity == maxQuantity)
+                if (quantity == maxQuantity)
                 {
-                    mesage += $"число {array[i]} повторяется {quantity} раз\n";
+                    mesage += $"число {array[i]} повторяется {quantity} раза\n";
                 }
 
                 if (quantity > maxQuantity)
                 {
                     maxQuantity = quantity;
-                    mesage = $"число {array[i]} - повторяется {maxQuantity} разa\n";
+                    mesage = $"число {array[i]} повторяется {maxQuantity} разa\n";
                 }
             }
-            
+
             Console.WriteLine(mesage);
+            //string line = "";
+            quantity = 1;
+
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                if (array[i] == array[i + 1])
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"{array[i+1]} ");
+                    quantity++;
+                }
+                else if (array[i] != array[i + 1] && quantity == maxQuantity)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"{array[i]} ");
+                    quantity = 1;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write($"{array[i]} ");
+                    quantity = 1;
+                }
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write($"{array[array.Length-1]}\n");
         }
     }
 }
